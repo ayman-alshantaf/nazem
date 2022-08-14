@@ -4,6 +4,9 @@
       <v-row class="ma-0">
         <!-- right section image -->
         <v-col cols="12" md="6" lg="5" class="pa-0">
+          <div class="overly">
+            <img :src="images.overlay">
+          </div>
         </v-col>
 
         <!-- left section form -->
@@ -78,6 +81,7 @@ export default {
     return {
       images: {
         logo: require('../../../assets/image/logo/logo.png'),
+      overlay: require('../../../assets/image/logo/Pateeren.png'),
       },
       show1: false,
       password: 'Password',
@@ -115,6 +119,16 @@ export default {
     background-position: right;
     background-repeat: no-repeat;
     background-size: cover;
+
+    .overly{
+      position: absolute;
+      right: 0;
+      width: 120px;
+      opacity: 0.8;
+      img{
+        width: 100%;
+      }
+    }
     //start left section
 
     .left-section {
