@@ -21,7 +21,7 @@
                 <v-form>
                   <div class="group-field">
                     <label>اسم المستخدم</label>
-                    <v-text-field placeholder="اكتب اسم المستخدم"></v-text-field>
+                    <v-text-field placeholder="اكتب اسم المستخدم"  :rules="[rules.required, rules.min]"></v-text-field>
                   </div>
                   <div class="group-field">
                     <label>كلمه المرور</label>
@@ -84,7 +84,7 @@ export default {
       rules: {
         required: value => !!value || 'هذا الحقل مطلوب',
         min: v => v.length >= 8 || ' يقل عن 8 حروف',
-        emailMatch: () => (`The email and password you entered don't match`),
+        emailRules: v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'يجب ان يكون البريد الاكتروني صحيح'
       },
     }
   },

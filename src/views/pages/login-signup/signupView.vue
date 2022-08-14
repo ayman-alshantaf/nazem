@@ -24,11 +24,11 @@
                 <v-form>
                   <div class="group-field">
                     <label>اسم المستخدم</label>
-                    <v-text-field placeholder="اكتب اسم المستخدم"></v-text-field>
+                    <v-text-field placeholder="اكتب اسم المستخدم"  :rules="[rules.required, rules.min]" required></v-text-field>
                   </div>
                   <div class="group-field">
                     <label>البريد الالكتروني</label>
-                    <v-text-field placeholder="اكتب البريد الالكتروني" required></v-text-field>
+                    <v-text-field placeholder="اكتب البريد الالكتروني" :rules="[rules.emailRules, rules.required]" required></v-text-field>
                   </div>
                   <div class="group-field">
                     <label>كلمه المرور</label>
@@ -52,7 +52,7 @@
                         hint="يجب أن لا يقل عن 8 حروف"
                         counter
                         @click:append="show1 = !show1"
-                        placeholder="اكتب كلمه المرور"
+                        placeholder="تأكيد كلمه المرور"
                         required
                     ></v-text-field>
                   </div>
@@ -63,7 +63,7 @@
                   </div>
                   <div class="create-account">
                     <span> لديك حساب</span>
-                    <router-link to="/signup" class="custom-link"> تسجيل دخول</router-link>
+                    <router-link to="/" class="custom-link"> تسجيل دخول</router-link>
                   </div>
                 </v-form>
               </div>
@@ -95,7 +95,8 @@ export default {
         rules: {
           required: value => !!value || 'هذا الحقل مطلوب',
           min: v => v.length >= 8 || ' يقل عن 8 حروف',
-          emailMatch: () => (`The email and password you entered don't match`),
+          emailRules: v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'يجب ان يكون البريد الاكتروني صحيح'
+
         },
     }
   },
